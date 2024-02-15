@@ -97,7 +97,7 @@ else if(isset($_POST['delete_category_btn']))
     $category_query = "SELECT * FROM categories WHERE id='$category_id' ";
     $category_query_run = mysqli_query($con, $category_query);
     $category_data = mysqli_fetch_array($category_query_run);
-    $image = $category_data['image'];
+    $image = $category_data['images'];
 
     $delete_query = "DELETE FROM categories WHERE id='$category_id' ";
     $delete_query_run = mysqli_query($con, $delete_query);
@@ -152,16 +152,16 @@ else if(isset($_POST['add_item_btn']))
 }
 
 //for Delete Items
-else if(isset($_POST['delete_items_btn'])) 
+else if(isset($_POST['delete_item_btn'])) 
 {
-    $category_id = mysqli_real_escape_string($con, $_POST['category_id']);
+    $item_id = mysqli_real_escape_string($con, $_POST['item_id']);
 
-    $category_query = "SELECT * FROM items WHERE id='$category_id' ";
-    $category_query_run = mysqli_query($con, $category_query);
-    $category_data = mysqli_fetch_array($category_query_run);
-    $image = $category_data['image'];
+    $item_query = "SELECT * FROM items WHERE id='$item_id' ";
+    $item_query_run = mysqli_query($con, $item_query);
+    $item_data = mysqli_fetch_array($item_query_run);
+    $image = $item_data['images'];
 
-    $delete_query = "DELETE FROM categories WHERE id='$category_id' ";
+    $delete_query = "DELETE FROM items WHERE id='$item_id' ";
     $delete_query_run = mysqli_query($con, $delete_query);
 
     if($delete_query_run)
@@ -170,12 +170,15 @@ else if(isset($_POST['delete_items_btn']))
             {
                 unlink("../uploads/" . $image);
             }  
-        header("Location: seecategory.php?", "DIPA OKAY TO");
+       // header("Location: seecategory.php?", "");
+       echo 200;
     }
     else 
     {
-        header("Location: seecategory.php?", "Something Went Wrong");
+        //header("Location: seecategory.php?", "Something Went Wrong");
+        echo 200;
     }
+
 }
 
 //for Update Item
@@ -218,10 +221,10 @@ else if (isset($_POST['update_item_btn']))
         }
     }
     
-    header("Location: see-item.php?id=$product_id");
+    header("Location: edit-item.php?id=$item_id");
 }
 else{
-    header("Location: see-item.php?id=$category_id");
+    header("Location: edit-item.php?id=$category_id");
 } 
 }
 ?>
