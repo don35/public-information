@@ -32,13 +32,10 @@
                         </a>
                         <ul id="posts" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Item 1</a>
+                                <a href="add-item.php" class="sidebar-link">Add Item</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Item 2</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Item 3</a>
+                                <a href="see-item.php" class="sidebar-link">See Item</a>
                             </li>
                         </ul>
                     </li>

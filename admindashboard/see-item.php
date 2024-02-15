@@ -26,7 +26,7 @@
                     <div class="card border-0">
                         <div class="card-header">
                             <h4 class="card-title">
-                                Categories
+                                Items
                             </h4>
                         </div>
                         <div class="card-body">
@@ -34,7 +34,7 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Category</th>
+                                        <th>Name</th>
                                         <th>Description</th>
                                         <th>Images</th>
                                         <th>Edit</th>
@@ -43,27 +43,27 @@
                                 </thead>
                                 <tbody> 
                                     <?php 
-                                        $category = getAll("categories");
+                                        $items = getAll("items");
 
-                                        if(mysqli_num_rows($category) > 0)
+                                        if(mysqli_num_rows($items) > 0)
                                         {
-                                            foreach ($category as $item) 
+                                            foreach ($items as $item) 
                                             {
                                                 ?>
                                                     <tr>
                                                         <td><?= $item['id']; ?></td>
-                                                        <td><?= $item['category']; ?></td>
+                                                        <td><?= $item['name']; ?></td>
                                                         <td><?= $item['description']; ?></td>
                                                         <td>
-                                                            <img src="../uploads/<?= $item['images']; ?>" width="50px" height="50px" alt="<?= $item['category']; ?>">
+                                                            <img src="../uploads/<?= $item['images']; ?>" width="50px" height="50px" alt="<?= $item['name']; ?>">
                                                         </td>
                                                         <td>
-                                                            <a href="edit-category.php?id=<?= $item['id']; ?>" class="btn btn-outline-primary">Edit</a>
+                                                            <a href="edit-item.php?id=<?= $item['id']; ?>" class="btn btn-outline-primary">Edit</a>                                       
                                                         </td>
                                                         <td>
                                                         <form action="code.php" method="POST">
-                                                                <input type="hidden" name="category_id" value="<?= $item['id']; ?>">
-                                                               <button type="submit" class="btn btn-outline-danger" name="delete_category_btn">Delete</button>
+                                                                <input type="hidden" name="items_id" value="<?= $item['id']; ?>">
+                                                               <button type="submit" class="btn btn-outline-danger" name="delete_items_btn">Delete</button>
                                                             </form>
                                                         </td>
                                                     </tr>    

@@ -115,4 +115,62 @@ else if(isset($_POST['delete_category_btn']))
         header("Location: seecategory.php?", "Something Went Wrong");
     }
 }
+
+//for adding Items
+else if(isset($_POST['add_item_btn'])) 
+{
+    $category_id = $_POST['category_id'];
+    $name = $_POST['name'];
+    $description = $_POST['description'];
+
+    $images = $_FILES['images']['name'];
+
+    $path = "../uploads/";
+
+    $image_ext = pathinfo($images, PATHINFO_EXTENSION);
+    $filename = time().'.'.$image_ext;
+
+    $target_path = $path . $filename;
+
+    $cate_query = "INSERT INTO items (category_id, name, description, images) VALUES ('$category_id', '$name', '$description', '$filename')";
+
+    $cate_query_run = mysqli_query($con, $cate_query);
+
+    if ($cate_query_run) {
+        move_uploaded_file($_FILES['images']['tmp_name'], $target_path);
+
+        header("Location: add-item.php");
+        exit();
+    } else {
+        header("Location: add-item.php");
+        exit();
+    }
+}
+
+//for Delete Items
+else if(isset($_POST['delete_items_btn'])) 
+{
+    $category_id = mysqli_real_escape_string($con, $_POST['category_id']);
+
+    $category_query = "SELECT * FROM items WHERE id='$category_id' ";
+    $category_query_run = mysqli_query($con, $category_query);
+    $category_data = mysqli_fetch_array($category_query_run);
+    $image = $category_data['image'];
+
+    $delete_query = "DELETE FROM categories WHERE id='$category_id' ";
+    $delete_query_run = mysqli_query($con, $delete_query);
+
+    if($delete_query_run)
+    {
+        if (file_exists("../uploads/" . $image)) 
+            {
+                unlink("../uploads/" . $image);
+            }  
+        header("Location: seecategory.php?", "DIPA OKAY TO");
+    }
+    else 
+    {
+        header("Location: seecategory.php?", "Something Went Wrong");
+    }
+}
 ?>

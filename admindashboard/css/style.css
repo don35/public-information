@@ -145,16 +145,17 @@ a.sidebar-link {
     width: 100%;
 }
 
-.form-control{
+.form-control, .form-select{
     border: 1px solid #b3a1a1 !important;
     padding: 8px 10px;
 }
 
 /* Sidebar Toggle */
-
 #sidebar.collapsed {
     margin-left: -264px;
 }
+
+
 
 /* Footer and Nav */
 

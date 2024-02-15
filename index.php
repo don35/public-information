@@ -10,12 +10,10 @@
 <body>
     <img class="wave" src="img/wave1.png">
         <div class="container">
-            
             <div class="img">
                 <img src="img/login.svg">
             </div>
             <div class="login-content">
-                <h1 class="title">Hello World</h1>
                 <form action="login.php" method="post">
                     <img src="img/avatar.svg">
                     <h2 class="title">Welcome</h2>
@@ -57,7 +55,7 @@
     // Disable pasting into the password field
             document.getElementById('passwordField').addEventListener('paste', function(event) {
                 event.preventDefault();
-                alert("Dont Paste It, Just Type.");
+                
                 });
         </script>
 </body>
