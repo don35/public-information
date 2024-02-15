@@ -32,7 +32,7 @@
                                     </h5>
                                 </div>
                                 <div class="card-body">
-                                    <form action="code.php" method="POST" enctype="multipart/form-data" id="addCategoryForm">
+                                    <form action="action.php" method="POST" enctype="multipart/form-data" id="addCategoryForm">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label for="">Category</label>

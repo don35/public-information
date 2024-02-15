@@ -24,10 +24,10 @@ if (isset($_POST['add_category_btn'])) {
     if ($cate_query_run) {
         move_uploaded_file($_FILES['images']['tmp_name'], $target_path);
 
-        header("Location: addcategory.php");
+        header("Location: seecategory.php");
         exit();
     } else {
-        header("Location: addcategory.php");
+        header("Location: seecategory.php");
         exit();
     }
 }
@@ -78,7 +78,7 @@ else if (isset($_POST['update_category_btn']))
     if($update_query_run)
     {
         // If successful, redirect to the edit-category page with a success message
-        header("Location: edit-category.php?id=$category_id&success=Category%20Updated%20Successfully");
+        header("Location: seecategory.php?id=$category_id&success=Category%20Updated%20Successfully");
         exit(); // Exit the script to prevent further execution
     }
     else 
@@ -122,28 +122,32 @@ else if(isset($_POST['add_item_btn']))
     $category_id = $_POST['category_id'];
     $name = $_POST['name'];
     $description = $_POST['description'];
-
     $images = $_FILES['images']['name'];
 
-    $path = "../uploads/";
+    $path = "../uploads";
 
     $image_ext = pathinfo($images, PATHINFO_EXTENSION);
-    $filename = time().'.'.$image_ext;
+    $filename = time().'.'. $image_ext;
 
-    $target_path = $path . $filename;
+    if ($name != "" && $description != "") 
+    {
+        
+    
 
-    $cate_query = "INSERT INTO items (category_id, name, description, images) VALUES ('$category_id', '$name', '$description', '$filename')";
+        $item_query = "INSERT INTO items (category_id,name,description,images) 
+        VALUES ('$category_id', '$name', '$description', '$filename')";
 
-    $cate_query_run = mysqli_query($con, $cate_query);
+        $item_query_run = mysqli_query($con, $item_query);
 
-    if ($cate_query_run) {
-        move_uploaded_file($_FILES['images']['tmp_name'], $target_path);
-
-        header("Location: add-item.php");
-        exit();
-    } else {
-        header("Location: add-item.php");
-        exit();
+        if($item_query_run)
+        {
+            move_uploaded_file($_FILES ['images']['tmp_name'], $path.'/'.$filename);
+            header("Location: see-item.php"/*Product Added Successfully*/);
+        }
+        else
+        {
+            header("Location: see-item.php" /*Something Went Wrong*/);
+        }
     }
 }
 
@@ -172,5 +176,52 @@ else if(isset($_POST['delete_items_btn']))
     {
         header("Location: seecategory.php?", "Something Went Wrong");
     }
+}
+
+//for Update Item
+else if (isset($_POST['update_item_btn'])) 
+{
+    $item_id = $_POST['item_id'];
+    $category_id = $_POST['category_id'];
+    $name = $_POST['name'];
+    $description = $_POST['description'];
+
+    $image = $_FILES['images']['name'];
+
+    $path = "../uploads";
+
+    $new_image = $_FILES['images']['name'];
+    $old_image = $_POST['old_image'];
+
+    if($new_image != "")
+    {
+    
+    $image_ext = pathinfo($image, PATHINFO_EXTENSION);
+    $update_filename = time().'.'. $image_ext;
+}
+    else
+    {
+    $update_filename = $old_image;
+    }
+
+    $update_item_query = "UPDATE items SET name='$name', description='$description', images='$update_filename' WHERE id='$item_id' ";
+    $update_item_query_run = mysqli_query($con, $update_item_query);
+
+    if($update_item_query_run)
+    {
+       if($_FILES['images']['name'] != "")
+       {
+        move_uploaded_file($_FILES['images']['tmp_name'], $path.'/'.$update_filename);
+        if(file_exists("../uploads/".$old_image))
+        {
+            unlink("../uploads/".$old_image);
+        }
+    }
+    
+    header("Location: see-item.php?id=$product_id");
+}
+else{
+    header("Location: see-item.php?id=$category_id");
+} 
 }
 ?>

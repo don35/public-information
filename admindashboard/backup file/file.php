@@ -24,8 +24,8 @@
             <main class="content px-3 py-2">                                                
                 <div class="container-fluid">
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                        Add Category
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                        Add Item
                                     </button>
 
                                     <!-- Modal -->
@@ -33,33 +33,53 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Category</h1>
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Item</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <form action="code.php" method="POST" enctype="multipart/form-data" id="addCategoryForm">
                                                     <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="">Category</label>
-                                                            <input type="text" name="category" placeholder="Enter Category Name" class="form-control mb-2" required>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label for="">Upload Images</label>
-                                                            <input type="file" name="images" class="form-control mb-2" required>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <label for="">Description</label>
-                                                            <textarea rows="3" name="description" placeholder="Enter Description" class="form-control mb-2" required></textarea>
-                                                        </div>
-                                                        <div class="col-md-12 text-end mt-3">
-                                                            
-                                                        </div>
+                                                    <div class="col-md-6">
+                                                        <label for="">Select Category</label>
+                                                        <select name="category_id" class="form-select mb-2">
+                                                            <option selected>Select Category</option>
+                                                            <?php 
+                                                                $categories = getAll("categories");
+
+                                                                if(mysqli_num_rows($categories) > 0)
+                                                                {
+                                                                    foreach ($categories as $item) {
+                                                                        ?>
+                                                                            <option value="<?php $item['id'];?>"><?= $item['category'];?></option>   
+                                                                        <?php
+                                                                    }
+                                                                }
+                                                                else
+                                                                {
+                                                                    echo "No Category Available";
+                                                                }
+                                                                
+                                                            ?>
+                                                        </select>
                                                     </div>
+                                                    <div class="col-md-6">
+                                                        <label class="mb-0">Upload Image</label>
+                                                        <input type="file" name="images" class="form-control mb-2" required >
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <label class="mb-0">Item Name</label>
+                                                        <input type="text" name="name" placeholder="Enter Name" class="form-control mb-2" required>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <label class="mb-0">Description</label>
+                                                        <textarea rows="3" name="description" placeholder="Enter Description" class="form-control mb-2" required></textarea>
+                                                    </div>
+                                                </div>
                                                 
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-primary" name="add_category_btn" id="addCategoryBtn">ADD</button>
+                                                        <button type="submit" class="btn btn-primary" name="add_item_btn" id="addCategoryBtn">ADD</button>
                                                     </div>
                                                     </div>
                                                     </div>
@@ -68,7 +88,7 @@
                     <div class="card border-0">
                         <div class="card-header">  
                             <h4 class="card-title">
-                                Categories
+                                Items
                             </h4>
                         </div>
                         <div class="card-body">
@@ -85,19 +105,19 @@
                                 </thead>
                                 <tbody> 
                                     <?php 
-                                        $category = getAll("categories");
+                                        $items = getAll("items");
 
-                                        if(mysqli_num_rows($category) > 0)
+                                        if(mysqli_num_rows($items) > 0)
                                         {
-                                            foreach ($category as $item) 
+                                            foreach ($items as $item)  
                                             {
                                                 ?>
                                                     <tr>
                                                         <td><?= $item['id']; ?></td>
-                                                        <td><?= $item['category']; ?></td>
+                                                        <td><?= $item['name']; ?></td>
                                                         <td><?= $item['description']; ?></td>
                                                         <td>
-                                                            <img src="../uploads/<?= $item['images']; ?>" width="50px" height="50px" alt="<?= $item['category']; ?>">
+                                                            <img src="../uploads/<?= $item['images']; ?>" width="50px" height="50px" alt="<?= $item['name']; ?>">
                                                         </td>
                                                         <td>
                                                             <a href="edit-category.php?id=<?= $item['id']; ?>" class="btn btn-outline-primary">Edit</a>

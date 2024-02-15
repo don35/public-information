@@ -16,10 +16,7 @@
                             aria-expanded="false"><i class="fa-solid fa-file-lines pe-2"></i>
                             Categories
                         </a>
-                        <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                            <li class="sidebar-item">
-                                <a href="addcategory.php" class="sidebar-link">Add Category</a>
-                            </li>
+                        <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">                           
                             <li class="sidebar-item">
                                 <a href="seecategory.php" class="sidebar-link">See Category</a>
                             </li>
@@ -31,9 +28,6 @@
                             Item
                         </a>
                         <ul id="posts" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                            <li class="sidebar-item">
-                                <a href="add-item.php" class="sidebar-link">Add Item</a>
-                            </li>
                             <li class="sidebar-item">
                                 <a href="see-item.php" class="sidebar-link">See Item</a>
                             </li>
