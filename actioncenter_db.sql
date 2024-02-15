@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 14, 2024 at 09:27 AM
+-- Generation Time: Feb 15, 2024 at 09:34 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -41,7 +41,10 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`id`, `category`, `description`, `images`) VALUES
 (42, 'Trivia', 'This is For Trivia ', '1.jpg'),
 (43, 'Weather Update', 'Weather Update ', 'weatherupdate.jpg'),
-(44, 'Eartquake Alert ', 'This is for Earthquake', 'eartquakealert.jpg');
+(44, 'Eartquake Alert ', 'This is for Earthquake', 'eartquakealert.jpg'),
+(65, 'lindol', 'dsadsadasdsad', '1707960473.jpg'),
+(67, 'Baha', 'dsadasd', 'maxresdefault.jpg'),
+(68, 'Pagsabog', 'Pagsabog', 'maxresdefault.jpg');
 
 -- --------------------------------------------------------
 
@@ -53,20 +56,19 @@ CREATE TABLE `items` (
   `id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
+  `description` mediumtext NOT NULL,
   `images` varchar(200) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `items`
 --
 
 INSERT INTO `items` (`id`, `category_id`, `name`, `description`, `images`, `created_at`) VALUES
-(12, 12, 'dasdsa', 'dsadasdsad', '1707881073.jpg', '2024-02-14 07:01:39'),
-(13, 13, 'Tsuanami', 'sadsadasd', '1707881634.jpg', '2024-02-14 07:01:43'),
-(14, 0, 'Earthquake ', 'sadsadsadsadasdsadasdsadsadsafafdas', '1707893723.jpg', '2024-02-14 06:55:23'),
-(15, 0, 'This is for Trivia', 'qwerty', '1707894284.jpg', '2024-02-14 07:04:44');
+(4, 43, 'dsad', 'dsadasd', '1707966620.jpg', '2024-02-15 03:10:20'),
+(5, 67, 'Baha 1', 'sdadasd', '1707966683.jpg', '2024-02-15 03:11:23'),
+(13, 44, 'dsadasdasd', 'dsadsadasddsadsadsad', '1707984963.jpg', '2024-02-15 08:16:03');
 
 -- --------------------------------------------------------
 
@@ -121,13 +123,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
