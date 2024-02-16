@@ -1,50 +1,95 @@
-$(document).ready(function () {
-  // Use event delegation to handle dynamically added elements
-  $(document).on("click", ".delete_item_btn", function (e) {
-    e.preventDefault();
-    var id = $(this).val();
-    alert(id);
-
-    $(document).ready(function () {
-      $(".delete_item_btn").click(function (e) {
-        e.preventDefault();
-        var delete_product = $(this).attr("id");
-        Swal.fire({
-          title: "Are you sure?",
-          text: "You won't be able to revert this!",
-          icon: "warning",
+$(document).ready(function(){
+  $('.delete_item_btn').click(function(e){
+      e.preventDefault();
+      var item_id = $(this).val();
+      
+      Swal.fire({
+          title: 'Are you sure?',
+          text: 'You won\'t be able to revert this!',
+          icon: 'warning',
           showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, delete it!",
-        }).then((result) => {
+          confirmButtonText: 'Yes, delete it!',
+          cancelButtonText: 'No, cancel!',
+          reverseButtons: true
+      }).then((result) => {
           if (result.isConfirmed) {
-            $.ajax({
-              data: {
-                item_id: id,
-                delete_item_btn: true,
-              },
-              type: "post",
-              url: "code.php",
-              success: function (data) {
-                if (response == 200) {
-                  swal("Success!", "Product Deleted Successfully", "success");
-                  $("#products_table").load(location.href + "#products_table");
-                } else if (response == 500) {
-                  swal("Error!", "Something Went Wrong", "error");
-                }
-                Swal.fire({
-                  title: "Deleted!",
-                  text: "Your file has been deleted.",
-                  icon: "success",
-                }).then((result) => {
-                  location.reload();
-                });
-              },
-            });
+              // User confirmed, proceed with deletion
+              $.ajax({
+                  type: 'POST',
+                  url: 'code.php',
+                  data: { delete_item_btn: true, item_id: item_id },
+                  success: function(response) {
+                      if(response == 200) {
+                          Swal.fire(
+                              'Deleted!',
+                              'Your item has been deleted.',
+                              'success'
+                          ).then(() => {
+                              location.reload(); // Reload the page or do any other action
+                          });
+                      } else {
+                          Swal.fire(
+                              'Error!',
+                              'Something went wrong while deleting the item.',
+                              'error'
+                          );
+                      }
+                  }
+              });
+          } else if (result.dismiss === Swal.DismissReason.cancel) {
+              // User canceled, do nothing
           }
-        });
       });
-    });
   });
 });
+
+$(document).ready(function(){
+  $('.delete_category_btn').click(function(e){
+      e.preventDefault();
+      var item_id = $(this).val();
+      
+      Swal.fire({
+          title: 'Are you sure?',
+          text: 'You won\'t be able to revert this!',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, delete it!',
+          cancelButtonText: 'No, cancel!',
+          reverseButtons: true
+      }).then((result) => {
+          if (result.isConfirmed) {
+              // User confirmed, proceed with deletion
+              $.ajax({
+                  type: 'POST',
+                  url: 'code.php',
+                  data: { delete_category_btn: true, category_id: item_id },
+                  success: function(response) {
+                      if(response == 200) {
+                          Swal.fire(
+                              'Deleted!',
+                              'Your item has been deleted.',
+                              'success'
+                          ).then(() => {
+                              location.reload(); // Reload the page or do any other action
+                          });
+                      } else {
+                          Swal.fire(
+                              'Error!',
+                              'Something went wrong while deleting the item.',
+                              'error'
+                          );
+                      }
+                  }
+              });
+          } else if (result.dismiss === Swal.DismissReason.cancel) {
+              // User canceled, do nothing
+          }
+      });
+  });
+});
+
+
+
+
+
+

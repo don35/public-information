@@ -79,7 +79,8 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-primary" name="add_item_btn" id="addCategoryBtn">ADD</button>
+                                                        <button type="submit" class="btn btn-primary " name="add_item_btn" id="addCategoryBtn">ADD</button>
+                                            
                                                     </div>
                                                     </div>
                                                     </div>
@@ -134,7 +135,7 @@
                                         else {
                                         echo "No Records Found";
                                         }
-                                    ?>
+                                    ?>  
                                     
                                 </tbody>
                             </table>

@@ -104,10 +104,7 @@
                                                             <a href="edit-category.php?id=<?= $item['id']; ?>" class="btn btn-outline-primary">Edit</a>
                                                         </td>
                                                         <td>
-                                                        <form action="code.php" method="POST">
-                                                                <input type="hidden" name="category_id" value="<?= $item['id']; ?>">
-                                                               <button type="submit" class="btn btn-outline-danger" name="delete_category_btn">Delete</button>
-                                                            </form>
+                                                               <button type="button" class="btn btn-outline-danger delete_category_btn" value="<?= $item['id']; ?>">Delete</button>
                                                         </td>
                                                     </tr>    
                                                 <?php
@@ -129,8 +126,10 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/script.js"></script>
-    
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/custom.js"></script>
 </body>
 </html>
 <?php 

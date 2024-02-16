@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 include('../dbcon.php');
 include('../functions/myfunctions.php');
 
@@ -108,11 +107,13 @@ else if(isset($_POST['delete_category_btn']))
             {
                 unlink("../uploads/" . $image);
             }  
-        header("Location: seecategory.php?", "DIPA OKAY TO");
+        //header("Location: seecategory.php?", "");
+        echo 200;
     }
     else 
     {
-        header("Location: seecategory.php?", "Something Went Wrong");
+        //header("Location: seecategory.php?", "");
+        echo 500;
     }
 }
 
@@ -143,10 +144,12 @@ else if(isset($_POST['add_item_btn']))
         {
             move_uploaded_file($_FILES ['images']['tmp_name'], $path.'/'.$filename);
             header("Location: see-item.php"/*Product Added Successfully*/);
+            //echo 200;
         }
         else
         {
             header("Location: see-item.php" /*Something Went Wrong*/);
+           //echo 500;
         }
     }
 }
@@ -170,13 +173,13 @@ else if(isset($_POST['delete_item_btn']))
             {
                 unlink("../uploads/" . $image);
             }  
-       // header("Location: seecategory.php?", "");
+       //header("Location: seeitem.php?", "");
        echo 200;
     }
     else 
     {
-        //header("Location: seecategory.php?", "Something Went Wrong");
-        echo 200;
+        //header("Location: seeitem.php?", "");
+        echo 500;
     }
 
 }
