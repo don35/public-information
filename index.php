@@ -47,7 +47,6 @@
                     <a href="signup.php">
                         <button class="btn" type="button">Sign Up</button>
                     </a>
-                </form>
             </div>
         </div>
         <script type="text/javascript" src="main.js"></script>
