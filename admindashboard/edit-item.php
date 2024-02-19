@@ -23,7 +23,6 @@
                 <!--navbar-->
                         <?php include "includes/navbar.php"?>
                     <main class="content px-3 py-2">
-
                         <div class="container-fluid">
                             <!-- Table Element -->
                                 <?php 

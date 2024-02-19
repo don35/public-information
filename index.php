@@ -44,9 +44,9 @@
                     </div>
                     <a href="#">Forgot Password?</a>    
                     <input type="submit" class="btn" value="Login">
-                    <a href="signup.php">
+                    <!--<a href="signup.php">
                         <button class="btn" type="button">Sign Up</button>
-                    </a>
+                    </a>-->
             </div>
         </div>
         <script type="text/javascript" src="main.js"></script>

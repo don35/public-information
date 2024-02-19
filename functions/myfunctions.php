@@ -18,5 +18,4 @@ function getByID($table, $id)
     
 }
 
-
 ?>

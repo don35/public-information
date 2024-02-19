@@ -2,7 +2,7 @@
             <!-- Content For Sidebar -->
             <div class="h-100">
                 <div class="sidebar-logo">
-                    <a href="#"><span class="action">ACTION</span> Center</a>
+                    <a href="#"><span id="action">ACTION</span> Center</a>
                 </div>
                 <ul class="sidebar-nav">
                     <li class="sidebar-item">
