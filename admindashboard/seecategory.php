@@ -89,7 +89,7 @@
                                 <tbody> 
                                     <?php 
                                         $category = getAll("categories");
-
+                                        
                                         if(mysqli_num_rows($category) > 0)
                                         {
                                             foreach ($category as $item) 

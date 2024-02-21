@@ -74,7 +74,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-primary" name="add_account_btn" id="addCategoryBtn">ADD</button>
+                                                        <button type="submit" class="btn btn-primary " name="add_account_btn" id="addAccountBtn">ADD</button>
                                                         <!--<button type="submit" class="btn btn-outline-primary add_category_btn">ADD</button>-->
                                                     </div>
                                                     </div>
@@ -149,9 +149,38 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="js/script.js"></script>
     <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/script.js"></script>
     <script src="js/custom.js"></script>
+    <script>
+        // Add an event listener to the button
+        document.getElementById('addAccountBtn').addEventListener('click', function() {
+            // Perform data insertion using AJAX
+            $.ajax({
+            url: 'code.php', // Replace 'insert_data.php' with your server-side script URL
+            type: 'POST',
+            data: { add_account_btn: true, }
+            success: function(response) {
+                // If the data insertion is successful, show SweetAlert success message
+                Swal.fire({
+                title: "Success!",
+                text: "Your account has been added successfully.",
+                icon: "success"
+                });
+            },
+            error: function(xhr, status, error) {
+                // If there's an error during data insertion, you can handle it here
+                console.error(error);
+                Swal.fire({
+                title: "Error!",
+                text: "An error occurred while adding your account. Please try again later.",
+                icon: "error"
+                });
+            }
+            });
+        });
+    </script>
+    
 </body>
 </html>
 <?php 

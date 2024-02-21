@@ -44,35 +44,23 @@ $(document).ready(function () {
   });
 });
 
-
-$(document).ready(function () {
-  $(".add_account_btn").click(function (e) {
-    e.preventDefault();
-
-    // Perform your form submission here
-    // Replace this with your actual form submission logic
-    $.ajax({
-      type: "POST",
-      url: "code.php",
-      data: { add_account_btn: true },
-      success: function (response) {
-        if (response == 200) {
-          Swal.fire(
-            "Success!",
-            "Account added successfully.",
-            "success"
-          ).then(() => {
-            // Redirect or reload the page after success
-            window.location.reload(); // Example: Reload the page
-          });
-        } else {
-          Swal.fire(
-            "Error!",
-            "Failed to add account.",
-            "error"
-          );
-        }
-      },
-    });
+document.getElementById('addAccountBtn').addEventListener('click', function(event) {
+  event.preventDefault(); // Prevent the form from submitting
+  
+  // Here you can add your code to add the data
+  
+  // Assuming the data was successfully added, show a SweetAlert success message
+  Swal.fire({
+      icon: 'success',
+      title: 'Success!',
+      text: 'Data has been added successfully.',
+      showConfirmButton: false,
+      timer: 1500 // Automatically close after 1.5 seconds
   });
 });
+
+
+
+
+
+

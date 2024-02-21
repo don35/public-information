@@ -7,7 +7,7 @@ if (isset($_POST['add_category_btn'])) {
     $category = $_POST['category'];
     $description = $_POST['description'];
 
-    $images = $_FILES['images']['name'];
+    $images = $_FILES['images']['name']; 
 
     $path = "../uploads/";
 
