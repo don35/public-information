@@ -120,7 +120,7 @@
                                                         <td><?= $item['created_at']; ?></td>
                                                         <td><?= $item['description']; ?></td>
                                                         <td>
-                                                            <img src="../uploads/<?= $item['images']; ?>" width="50px" height="50px" alt="<?= $item['name']; ?>">
+                                                            <img src="../uploads/<?= $item['images']; ?>" width="50px" height="50px" alt="<?= $item['name']; ?>" style="display: block; margin: 0 auto;">
                                                         </td>
                                                         <td>
                                                             <a href="edit-item.php?id=<?= $item['id']; ?>" class="btn btn-outline-primary">Edit</a>

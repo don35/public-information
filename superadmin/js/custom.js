@@ -1,7 +1,8 @@
-/*$(document).ready(function() {
+
+$(document).ready(function () {
   $(".delete_account_btn").click(function (e) {
     e.preventDefault();
-    var account_id = $(this).val(); 
+    var item_id = $(this).val();
 
     Swal.fire({
       title: "Are you sure?",
@@ -17,7 +18,7 @@
         $.ajax({
           type: "POST",
           url: "code.php",
-          data: { delete_account_btn: true, account_id: account_id }, 
+          data: { delete_account_btn: true, account_id: item_id },
           success: function (response) {
             if (response == 200) {
               Swal.fire(
@@ -41,47 +42,37 @@
       }
     });
   });
-});*/
-
-$(document).ready(function () {
-
-  $('.delete_account_btn').click(function (e) {
-    e.preventDefault();
-
-    var id = $(this).val();
-    alert(id);
-    
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        $.ajax({
-          type: "POST",
-          url: "code.php",
-          data: {
-            'account_id': id,
-            'delete_account_btn': true
-          },
-          success: function (response) {
-            if(response == 200)
-            {
-              swal("Success!", "Account Deleted Successfully!", "success");
-            }
-            else if(response == 500)
-            {
-              swal("Error", "Account Deleted Successfully!", "Error");
-            }
-          }
-        });
-      }
-    });
-    
-  })
 });
 
+
+$(document).ready(function () {
+  $(".add_account_btn").click(function (e) {
+    e.preventDefault();
+
+    // Perform your form submission here
+    // Replace this with your actual form submission logic
+    $.ajax({
+      type: "POST",
+      url: "code.php",
+      data: { add_account_btn: true },
+      success: function (response) {
+        if (response == 200) {
+          Swal.fire(
+            "Success!",
+            "Account added successfully.",
+            "success"
+          ).then(() => {
+            // Redirect or reload the page after success
+            window.location.reload(); // Example: Reload the page
+          });
+        } else {
+          Swal.fire(
+            "Error!",
+            "Failed to add account.",
+            "error"
+          );
+        }
+      },
+    });
+  });
+});

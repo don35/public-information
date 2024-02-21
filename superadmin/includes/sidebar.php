@@ -13,7 +13,7 @@
                     </li>
                     <li class="sidebar-item">
                         <a href="addaccounts.php" class="sidebar-link">
-                            <i class="fa-solid fa-list pe-2"></i>
+                            <i class="fa fa-user fa-list pe-2"></i>
                             Add Accounts
                         </a>
                     </li>
