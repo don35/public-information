@@ -1,7 +1,8 @@
 <?php 
 session_start();
 include "../dbcon.php";
-//include "../authorization.php";
+include "../sqlquery.php";
+
 if (!isset($_SESSION['user_name']) || !isset($_SESSION['id']) || !isset($_SESSION['role'])) {
     // Redirect if user is not logged in
     header("Location: ../index.php");
@@ -14,6 +15,7 @@ if ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'superadmin') {
     header("Location: ../index.php");
     exit();
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +27,7 @@ if ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'superadmin') {
     <meta name="robots" content="noindex, nofollow">
     <title>Batangas State University Action Center</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
+    <link href="https://kit-pro.fontawesome.com/releases/v5.15.2/css/pro.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -32,50 +35,59 @@ if ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'superadmin') {
 <body>
     <div class="wrapper">
         <!--side bar-->
-                <?php include "includes/sidebar.php"?>
+        <?php include "includes/sidebar.php"?>
         <div class="main">
-           <!--navbar-->
-                <?php include "includes/navbar.php"?>
+            <!--navbar-->
+            <?php include "includes/navbar.php"?>
             <main class="content px-3 py-2">
                 <div class="container-fluid">
-                    <div class="mb-3">
-                        <h4>Welcome Action Center</h4>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 col-md-6">
-                            <div class="card flex-fill border-0 illustration">
-                                <div class="card-body p-0 d-flex flex-fill">
-                                    <div class="row g-0 w-100">
-                                        <div class="col-6">
-                                            <div class="p-3 m-1">
-                                                <h4>Added Categories</h4>
+                    <div class="container-fluid">
+                        <section>
+                            <div class="row">
+                                <div class="col-xl-4 col-md-6 mb-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between p-md-1">
+                                                <div class="d-flex flex-row">
+                                                    <div class="align-self-center">
+                                                        <h2 class="h1 mb-0 me-4"><?php echo $total_categories; ?></h2>
+                                                    </div>
+                                                    <div>
+                                                        <h4>Total Added Categories</h4>
+                                                        <p class="mb-0">Added Categories</p>
+                                                    </div>
+                                                </div>
+                                                <div class="align-self-center">
+                                                    <i class="fas fa-copy fa-3x" style="color: #c21818; font-size: 5rem;"></i>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-6 align-self-end text-end">
-                                            <img src="image/building.jpg" class="img-fluid illustration-img" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-md-6 mb-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between p-md-1">
+                                                <div class="d-flex flex-row">
+                                                    <div class="align-self-center">
+                                                        <h2 class="h1 mb-0 me-4"><?php echo $total_items ?></h2>
+                                                    </div>
+                                                    <div>
+                                                        <h4>Total Added Items</h4>
+                                                        <p class="mb-0">Added Items</p>
+                                                    </div>
+                                                </div>
+                                                <div class="align-self-center">
+                                                    <i class="fas fa-list fa-3x" style="color: #c21818; font-size: 5rem;"></i>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="col-12 col-md-6">
-                            <div class="card flex-fill border-0 illustration">
-                                <div class="card-body p-0 d-flex flex-fill">
-                                    <div class="row g-0 w-100">
-                                        <div class="col-6">
-                                            <div class="p-3 m-1">
-                                                <h4>Added Items</h4>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 align-self-end text-end">
-                                            <img src="image/building.jpg" class="img-fluid illustration-img" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </section>
                     </div>
+                </div>
             </main>
             <!--footer-->
             <?php include "includes/footer.php"?>
@@ -84,6 +96,5 @@ if ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'superadmin') {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
 </body>
+
 </html>
-
-

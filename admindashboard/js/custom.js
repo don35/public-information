@@ -67,7 +67,7 @@ $(document).ready(function () {
             if (response == 200) {
               Swal.fire(
                 "Deleted!",
-                "Your item has been deleted.",
+                "The category has been deleted.",
                 "success"
               ).then(() => {
                 location.reload(); // Reload the page or do any other action
@@ -75,7 +75,7 @@ $(document).ready(function () {
             } else {
               Swal.fire(
                 "Error!",
-                "Something went wrong while deleting the item.",
+                "Something went wrong while deleting the category.",
                 "error"
               );
             }
@@ -87,5 +87,3 @@ $(document).ready(function () {
     });
   });
 });
-
-

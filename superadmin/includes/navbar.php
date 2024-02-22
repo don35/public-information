@@ -4,6 +4,9 @@
                 </button>
                 <div class="navbar-collapse navbar">
                     <ul class="navbar-nav">
+                    <form class="d-flex ms-auto">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">   
+                    </form>
                         <li class="nav-item dropdown">
                             <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
                                 <img src="image/logo.png" class="avatar img-fluid rounded" alt="">

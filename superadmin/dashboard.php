@@ -1,6 +1,7 @@
 <?php 
 session_start();
 include "../dbcon.php";
+include "../sqlquery.php";
 
 if (!isset($_SESSION['user_name']) || !isset($_SESSION['id']) || !isset($_SESSION['role'])) {
     // Redirect if user is not logged in
@@ -15,11 +16,6 @@ if ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'superadmin') {
     exit();
 }
 
-// Query to count total added accounts
-$sql = "SELECT COUNT(*) AS total_accounts FROM users";
-$result = mysqli_query($con, $sql);
-$row = mysqli_fetch_assoc($result);
-$total_accounts = $row['total_accounts'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +59,7 @@ $total_accounts = $row['total_accounts'];
                                         </div>
                                     </div>
                                     <div class="align-self-center">
-                                        <i class="fas fa-wallet text-success fa-3x"></i>
+                                        <i class="fas fa-user fa-5x" style="color: #c21818; font-size: 5rem;"></i>
                                     </div>
                                     </div>
                                 </div>
