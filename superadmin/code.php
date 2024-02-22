@@ -28,10 +28,11 @@ if (isset($_POST['add_account_btn'])) {
 
     if ($cate_query_run) {
         move_uploaded_file($_FILES['images']['tmp_name'], $target_path);
-        
+
         header("Location: addaccounts.php");
        
     } else {
+        
         header("Location: addaccounts.php");
         
     }

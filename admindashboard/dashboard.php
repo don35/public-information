@@ -1,7 +1,19 @@
 <?php 
 session_start();
 include "../dbcon.php";
-include "../authorization.php";
+//include "../authorization.php";
+if (!isset($_SESSION['user_name']) || !isset($_SESSION['id']) || !isset($_SESSION['role'])) {
+    // Redirect if user is not logged in
+    header("Location: ../index.php");
+    exit();
+}
+
+// Check if user role is admin or superadmin
+if ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'superadmin') {
+    // Redirect if user does not have appropriate role
+    header("Location: ../index.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

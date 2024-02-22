@@ -23,41 +23,34 @@ $(document).ready(function () {
             if (response == 200) {
               Swal.fire(
                 "Deleted!",
-                "Your item has been deleted.",
+                "The Account has been Deleted.",
                 "success"
               ).then(() => {
-                location.reload(); // Reload the page or do any other action
+                location.reload(); // Reload the page or do any other action 
               });
             } else {
               Swal.fire(
                 "Error!",
-                "Something went wrong while deleting the item.",
+                "Something went wrong while deleting the account.",
                 "error"
               );
             }
           },
         });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        // User canceled, do nothing
+        
       }
     });
   });
 });
 
-document.getElementById('addAccountBtn').addEventListener('click', function(event) {
-  event.preventDefault(); // Prevent the form from submitting
+
   
-  // Here you can add your code to add the data
   
-  // Assuming the data was successfully added, show a SweetAlert success message
-  Swal.fire({
-      icon: 'success',
-      title: 'Success!',
-      text: 'Data has been added successfully.',
-      showConfirmButton: false,
-      timer: 1500 // Automatically close after 1.5 seconds
-  });
-});
+
+
+
+
 
 
 

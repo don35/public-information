@@ -38,10 +38,10 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
             if ($row = mysqli_fetch_assoc($result)) {
                 // Verify password using password_verify function
                 if (password_verify($pass, $row['password'])) {
-                    $_SESSION['loggedin'] = true;
                     $_SESSION['user_name'] = $row['username'];
                     $_SESSION['name'] = $row['name'];
                     $_SESSION['id'] = $row['id'];
+                    $_SESSION['role'] = $row['role'];
 
                     // Check user role and redirect accordingly
                     if ($row['role'] == 'admin') {

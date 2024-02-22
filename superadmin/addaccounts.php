@@ -1,4 +1,21 @@
-<?php include "../functions/myfunctions.php"; ?>
+<?php 
+session_start();
+include "../functions/myfunctions.php"; 
+include "../dbcon.php";
+
+if (!isset($_SESSION['user_name']) || !isset($_SESSION['id']) || !isset($_SESSION['role'])) {
+    // Redirect if user is not logged in
+    header("Location: ../index.php");
+    exit();
+}
+
+// Check if user role is admin or superadmin
+if ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'superadmin') {
+    // Redirect if user does not have appropriate role
+    header("Location: ../index.php");
+    exit();
+}
+?>
 
 
 
@@ -43,7 +60,7 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <label class="mb-0">Select Role</label>
-                                                            <select name="role" class="form-select mb-2">
+                                                            <select id="role" name="role" class="form-select mb-2">
                                                                 <option selected>Select Role</option>
                                                                 <option value="admin">Admin</option>
                                                                 <option value="superadmin">Super Admin</option>
@@ -51,30 +68,30 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <label for="">Upload Images</label>
-                                                            <input type="file" name="images" class="form-control mb-2" required>
+                                                            <input type="file" id="images" name="images" class="form-control mb-2" required>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <label class="mb-0">User Name</label>
-                                                            <input type="text" name="username" class="form-control mb-2" placeholder="Enter Username" required>
+                                                            <input type="text" id="username" name="username" class="form-control mb-2" placeholder="Enter Username" required>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <label class="mb-0">Password</label>
-                                                            <input type="password" name="password" placeholder="Enter Name" class="form-control mb-2" required>
+                                                            <input type="password" id="password" name="password" placeholder="Enter Name" class="form-control mb-2" required>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <label class="mb-0">Name</label>
-                                                            <input type="text" name="name" placeholder="Enter Name" class="form-control mb-2" required>
+                                                            <input type="text" id="name" name="name" placeholder="Enter Name" class="form-control mb-2" required>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <label class="mb-0">Email</label>
-                                                            <input type="email" name="email" placeholder="Enter Name" class="form-control mb-2" required>
+                                                            <input type="email" id="email" name="email" placeholder="Enter Name" class="form-control mb-2" required>
                                                         </div>
                                                     </div>
                                                 
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-primary " name="add_account_btn" id="addAccountBtn">ADD</button>
+                                                        <button type="submit" id="submit" class="btn btn-primary" name="add_account_btn">ADD</button>
                                                         <!--<button type="submit" class="btn btn-outline-primary add_category_btn">ADD</button>-->
                                                     </div>
                                                     </div>
@@ -152,34 +169,7 @@
     <script src="js/jquery-3.7.1.min.js"></script>
     <script src="js/script.js"></script>
     <script src="js/custom.js"></script>
-    <script>
-        // Add an event listener to the button
-        document.getElementById('addAccountBtn').addEventListener('click', function() {
-            // Perform data insertion using AJAX
-            $.ajax({
-            url: 'code.php', // Replace 'insert_data.php' with your server-side script URL
-            type: 'POST',
-            data: { add_account_btn: true, }
-            success: function(response) {
-                // If the data insertion is successful, show SweetAlert success message
-                Swal.fire({
-                title: "Success!",
-                text: "Your account has been added successfully.",
-                icon: "success"
-                });
-            },
-            error: function(xhr, status, error) {
-                // If there's an error during data insertion, you can handle it here
-                console.error(error);
-                Swal.fire({
-                title: "Error!",
-                text: "An error occurred while adding your account. Please try again later.",
-                icon: "error"
-                });
-            }
-            });
-        });
-    </script>
+    
     
 </body>
 </html>
