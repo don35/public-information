@@ -58,7 +58,7 @@ if ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'superadmin') {
                                                     </div>
                                                 </div>
                                                 <div class="align-self-center">
-                                                    <i class="fas fa-copy fa-3x" style="color: #c21818; font-size: 5rem;"></i>
+                                                    <i class="fas fa-copy fa-2x" style="color: #c21818; font-size: 5rem;"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -78,7 +78,7 @@ if ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'superadmin') {
                                                     </div>
                                                 </div>
                                                 <div class="align-self-center">
-                                                    <i class="fas fa-list fa-3x" style="color: #c21818; font-size: 5rem;"></i>
+                                                    <i class="fas fa-list fa-2x" style="color: #c21818; font-size: 5rem;"></i>
                                                 </div>
                                             </div>
                                         </div>
