@@ -29,7 +29,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
         } else {
             // Bind parameters to the prepared statement
             mysqli_stmt_bind_param($stmt, "s", $uname);
-            // Execute the prepared statement
+            
             mysqli_stmt_execute($stmt);
             // Get the result
             $result = mysqli_stmt_get_result($stmt);
