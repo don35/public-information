@@ -66,11 +66,9 @@ if ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'superadmin') {
                                                         </div>
                                                         <div class="col-md-12">
                                                             <label for="">Description</label>
-                                                            <textarea rows="3" name="description" placeholder="Enter Description" class="form-control mb-2" required></textarea>
+                                                            <textarea rows="11" name="description" placeholder="Enter Description" class="form-control mb-2" required></textarea>
                                                         </div>
-                                                        <div class="col-md-12 text-end mt-3">
-                                                            
-                                                        </div>
+                                                        
                                                     </div>
                                                 
                                                     </div>

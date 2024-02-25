@@ -1,8 +1,5 @@
-<?php 
+<?php include "../functions/myfunctions.php"; 
 session_start();
-include "../functions/myfunctions.php"; 
-include "../dbcon.php";
-
 if (!isset($_SESSION['user_name']) || !isset($_SESSION['id']) || !isset($_SESSION['role'])) {
     // Redirect if user is not logged in
     header("Location: ../index.php");
@@ -15,6 +12,7 @@ if ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'superadmin') {
     header("Location: ../index.php");
     exit();
 }
+
 ?>
 
 
@@ -56,8 +54,8 @@ if ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'superadmin') {
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="code.php" method="POST" enctype="multipart/form-data" id="addCategoryForm">
-                                                    <div class="row">
+                                            <form id="addAccountForm" action="code.php" method="POST" enctype="multipart/form-data">
+                                                <div class="row">
                                                         <div class="col-md-6">
                                                             <label class="mb-0">Select Role</label>
                                                             <select id="role" name="role" class="form-select mb-2">
@@ -76,7 +74,7 @@ if ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'superadmin') {
                                                         </div>
                                                         <div class="col-md-12">
                                                             <label class="mb-0">Password</label>
-                                                            <input type="password" id="password" name="password" placeholder="Enter Name" class="form-control mb-2" required>
+                                                            <input type="password" id="password" name="password" placeholder="Enter Password" class="form-control mb-2" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" title="Password must be at least 8 characters long and contain at least one letter and one number" required>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <label class="mb-0">Name</label>
@@ -84,14 +82,14 @@ if ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'superadmin') {
                                                         </div>
                                                         <div class="col-md-12">
                                                             <label class="mb-0">Email</label>
-                                                            <input type="email" id="email" name="email" placeholder="Enter Name" class="form-control mb-2" required>
+                                                            <input type="email" id="email" name="email" placeholder="Enter Email" class="form-control mb-2" required>
                                                         </div>
                                                     </div>
                                                 
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <button type="submit" id="submit" class="btn btn-primary" name="add_account_btn">ADD</button>
+                                                        <button type="submit" class="btn btn-primary" name="add_account_btn">ADD</button>
                                                         <!--<button type="submit" class="btn btn-outline-primary add_category_btn">ADD</button>-->
                                                     </div>
                                                     </div>
@@ -113,7 +111,6 @@ if ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'superadmin') {
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Role</th>
-                                        <th>Password</th>
                                         <th>Account Picture</th>
                                         <th>Edit</th>
                                         <th>Delete</th>
@@ -121,8 +118,8 @@ if ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'superadmin') {
                                 </thead>
                                 <tbody> 
                                     <?php 
-                                        $accounts = getLahat("users");
-
+                                        $accounts = getAll("users");
+                                        
                                         if(mysqli_num_rows($accounts) > 0)
                                         {
                                             foreach ($accounts as $item) 
@@ -131,11 +128,9 @@ if ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'superadmin') {
                                                     <tr>
                                                         <td><?= $item['id']; ?></td>
                                                         <td><?= $item['username']; ?></td>
-                                                        
                                                         <td><?= $item['name']; ?></td>
                                                         <td><?= $item['email']; ?></td>
                                                         <td><?= $item['role']; ?></td>
-                                                        <td><?= $item['password']; ?></td>
                                                         <td>
                                                             <img src="../uploads/<?= $item['images']; ?>" width="50px" height="50px" alt="<?= $item['name']; ?>" style="display: block; margin: 0 auto;">
                                                         </td>
@@ -143,14 +138,14 @@ if ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'superadmin') {
                                                         <a href="edit-account.php?id=<?= $item['id']; ?>" class="btn btn-outline-primary">Edit</a>
                                                         </td>
                                                         <td>
-                                                               <button type="button" class="btn btn-outline-danger delete_account_btn" value="<?= $item['id']; ?>">Delete</button>
+                                                            <button type="button" class="btn btn-outline-danger delete_account_btn" value="<?= $item['id']; ?>">Delete</button>
                                                         </td>
                                                     </tr>    
                                                 <?php
                                             }
                                         }
                                         else {
-                                        echo "No Records Found";
+                                        echo "No Account Found";
                                         }
                                     ?>
                                     
@@ -166,11 +161,9 @@ if ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'superadmin') {
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="js/jquery-3.7.1.min.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
     <script src="js/custom.js"></script>
-    
-    
 </body>
 </html>
 <?php 

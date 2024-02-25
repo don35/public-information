@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
   $(".delete_account_btn").click(function (e) {
     e.preventDefault();
@@ -26,7 +25,7 @@ $(document).ready(function () {
                 "The Account has been Deleted.",
                 "success"
               ).then(() => {
-                location.reload(); // Reload the page or do any other action 
+                location.reload(); // Reload the page or do any other action
               });
             } else {
               Swal.fire(
@@ -38,22 +37,7 @@ $(document).ready(function () {
           },
         });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        
       }
     });
   });
 });
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-

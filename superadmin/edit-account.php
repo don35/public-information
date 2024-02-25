@@ -51,7 +51,7 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                             <label class="mb-0">Password</label>
-                                                            <input type="password" name="password" value="<?= $data['password']; ?>" placeholder="Enter Name" class="form-control mb-2" required>
+                                                            <input type="password" name="password" value="<?= $data['password']; ?>" placeholder="Enter Name" class="form-control mb-2" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" title="Password must be at least 8 characters long and contain at least one letter and one number" required>
                                                     </div>
                                                     <div class="col-md-6">
                                                             <label class="mb-0">Name</label>

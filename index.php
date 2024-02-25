@@ -40,7 +40,7 @@
                     <p>Get Access to your Account</p>
                 </div>
 
-                <div class="alert alert-danger <?php if (!isset($_GET['error']) && !isset($_GET['success'])) { echo 'd-none'; } ?>" role="alert">
+                <div class="alert alert-danger <?php if (!isset($_GET['error']) && !isset($_GET['success'])) { echo 'd-none'; } ?>" role="alert" style="padding: 3px 8px; margin-bottom: 5px;">
                     <?php if (isset($_GET['error'])) { ?>
                         <p class="error"><?php echo $_GET['error']; ?></p>
                     <?php }?>

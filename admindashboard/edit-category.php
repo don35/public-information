@@ -58,7 +58,7 @@
                                                     </div>
                                                     <div class="col-md-12">
                                                         <label for="">Description</label>
-                                                        <textarea rows="3" name="description" placeholder="Enter Description" class="form-control"><?= $data['description'] ?></textarea>
+                                                        <textarea rows="11" name="description" placeholder="Enter Description" class="form-control"><?= $data['description'] ?></textarea>
                                                     </div>
                                                     <div class="col-md-12 text-end mt-3">
                                                         <button type="submit" class="btn btn-outline-primary" name="update_category_btn">Update</button>
